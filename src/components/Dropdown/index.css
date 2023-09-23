@@ -1,0 +1,52 @@
+.dropdown {
+    position: relative;
+  }
+  .dropdownBtn{
+    background-color: unset;
+    border: 0;
+    color: white;
+    font-size: 1.5rem;
+    margin: 0 4rem;
+  }
+  .dropdownBtn:hover {
+    color: rgb(181, 163, 0);
+  }
+  .menu {
+    position: absolute;
+    list-style-type: none;
+    margin: 5px 25%;
+    padding: 0;
+    border: 1px solid grey;
+    width: 150px;
+  }
+  
+  .menu > li {
+    margin: 0;
+    padding: 2px 5px;
+    background-color: white;
+  }
+
+  .menu > li > a {
+    text-decoration: none;
+    color: rgb(181, 163, 0);
+  }
+  
+  .menu > li:hover {
+    background-color: rgb(181, 163, 0);
+  }
+  .menu > li:hover > a {
+    color: white;
+  }
+  
+  .menu > li > button {
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 5px;
+    margin: 0;
+    font: inherit;
+    cursor: pointer;
+  }

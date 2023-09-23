@@ -1,0 +1,28 @@
+h1 {
+  color: #ffffff;
+  font-size: 10rem;
+  font-weight: bold;
+}
+.containter {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.listado {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+  flex-wrap: wrap;
+}
+.categoria {
+  display: flex;
+  align-self: flex-start;
+  margin-left: 10%;
+  font-size: 5rem;
+  color: white;
+}

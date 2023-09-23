@@ -1,0 +1,9 @@
+body {
+  width: calc(100vw - (100vw - 100%));
+  min-height: 100vh;
+  overflow-x: hidden;
+
+  background-image: url("./img/fondo.png");
+  background-size: cover;
+  
+}

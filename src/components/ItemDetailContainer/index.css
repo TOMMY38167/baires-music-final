@@ -1,0 +1,33 @@
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.categoriaTitulo {
+    font-size: 1.5rem;
+    align-self: flex-start;
+}
+
+.itemCard {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 80%;
+    height: 600px;
+    padding: 20px;
+    background-color: white;
+    color: black;
+}
+.itemDetails{
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin-left: 20px;
+}
+.singleItemImg{
+    width: 600px;
+    height: auto;
+}
