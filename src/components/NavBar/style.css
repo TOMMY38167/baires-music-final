@@ -1,42 +1,100 @@
 .colorNav {
-    height: 100px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin: 0 3% ;
-    align-items: center;
-    font-size: 1.5rem;
-    background-image: url(../../img/puaBA\ 1.png);
-    background-repeat: no-repeat;
-    background-position: 13.5rem 1.2rem;
-    background-size: 3.7rem;
-    
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0 3%;
+  align-items: center;
+  font-size: 1.5rem;
+  background-image: url(../../img/puaBA\ 1.png);
+  background-repeat: no-repeat;
+  background-position: 13.5rem 1.2rem;
+  background-size: 3.7rem;
 }
-.navList {
-    list-style: none;
-    display: flex;
-    flex-direction: row;
-    color: #ffffff;
-    margin-right: 50%;
+.itemsNav {
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  width: 100%;
+  height: 100px;
+}
+.gridMenu {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  transition: all 0.5s ease-in-out;
+  height: 0;
+  overflow: hidden;
+}
+.abrirMenu {
+  height: 120px;
+}
+.gridMenu .menu {
+  display: flex;
+  flex-direction: column;
+  grid-area: 1 / 3 / 2 / 4;
+  justify-content: start;
+  padding: 0;
+  margin: 0;
+}
+.gridMenu .menu .menu-item {
+  margin: 0;
+  color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+.gridMenu .menu .menu-item p {
+  margin: 0;
+}
+
+.gridMenu .menu .menu-item .puntito {
+  margin-right: 30px;
+}
+.itemsNav .logo {
+  grid-area: 1 / 1 / 2 / 2;
+}
+.itemsNav .dropdown {
+  display: flex;
+  grid-area: 1 / 3 / 2 / 4;
+  justify-content: start;
+  align-items: center;
+}
+.itemsNav .dropdown .dropdownBtn {
+  background: none;
+  border: 0;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.itemsNav .dropdown .dropdownBtn:hover,
+.gridMenu .menu .menu-item:hover > p {
+  color: rgb(181, 163, 0);
+}
+.itemsNav .carrito {
+  grid-area: 1 / 5 / 2 / 6;
+  justify-content: end;
 }
 li {
-    margin: 0 4rem;
-    list-style: none;
-
-
+  margin: 0 4rem;
+  list-style: none;
 }
 a {
-    text-decoration: none;
-    color: #ffffff;
-
+  text-decoration: none;
+  color: #ffffff;
 }
-a :hover {
-    color: rgb(181, 163, 0);
+ {
+  color: rgb(181, 163, 0);
 }
 .buscar li {
-    width: 6.6rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    
+  width: 6.6rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

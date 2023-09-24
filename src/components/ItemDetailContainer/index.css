@@ -28,6 +28,6 @@
     margin-left: 20px;
 }
 .singleItemImg{
-    width: 600px;
-    height: auto;
+    width: auto;
+    height: 100%;
 }

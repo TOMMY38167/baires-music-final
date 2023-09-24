@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import placeholderImage from "../../img/placeholder.webp";
+import imagenes from "../../helpers/images";
 import { useParams } from "react-router-dom";
 import { agregarCarrito } from "../../helpers/carrito";
 import "./index.css";
@@ -22,7 +22,7 @@ export default function ItemDetailContainer({ instrumentos, categorias }) {
     if (instrumentoActual) {
       return (
         <div className="itemCard">
-          <img src={placeholderImage} className="singleItemImg" />
+          <img src={imagenes[instrumentoActual.imagen]} className="singleItemImg" />
           <div className="itemDetails">
             <p>{instrumentoActual.nombre}</p>
             <p>{categorias[instrumentoActual.categoria]}</p>

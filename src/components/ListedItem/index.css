@@ -40,7 +40,7 @@
 }
 
 .button > a,
-p {
+.button > p {
   text-decoration: none;
   color: black;
   margin: 0;
