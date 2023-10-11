@@ -7,13 +7,13 @@ import { getFirestore } from "firebase/firestore";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyAAUstpRih9-evUj64IXfimGXXBPAY-MTM",
-  authDomain: "baires-music.firebaseapp.com",
-  projectId: "baires-music",
-  storageBucket: "baires-music.appspot.com",
-  messagingSenderId: "1063251197514",
-  appId: "1:1063251197514:web:0b1c636164e8c94908b0b3",
-  measurementId: "G-EYB8BVFMQZ",
+  apiKey: "AIzaSyBmUhyWpScEYWBXbaNt5OA3HudR0lV8IcU",
+  authDomain: "bairesmusic.firebaseapp.com",
+  projectId: "bairesmusic",
+  storageBucket: "bairesmusic.appspot.com",
+  messagingSenderId: "36481966522",
+  appId: "1:36481966522:web:b8d086b54ca8700b56bd83",
+  measurementId: "G-N5ETBDWELP",
 };
 
 // Initialize Firebase

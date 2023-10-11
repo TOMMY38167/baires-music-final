@@ -4,14 +4,18 @@ import ItemDetailContainer from "./components/ItemDetailContainer";
 import Checkout from "./components/Checkout";
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
+import { Context } from "./Context";
 import { useEffect, useState } from "react";
 import db from "./helpers/firebase";
 import { collection, query, getDocs } from "firebase/firestore";
 import { ToastContainer } from "react-toastify";
+import ModalCart from "./components/ModalCart";
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const [instrumentos, setInstrumentos] = useState([]);
+  const [carrito, setCarrito] = useState([]);
+  const [openModalWithId, setOpenModalWithId] = useState();
 
   useEffect(() => {
     //Cargar instrumentos
@@ -38,50 +42,55 @@ function App() {
 
   return (
     <div>
-      <NavBar />
-      <ToastContainer />
-      <Routes>
-        <Route
-          path="/"
-          Component={(props) => (
-            <ItemsListContainer
-              instrumentos={instrumentos}
-              categorias={categorias}
-              {...props}
-            />
-          )}
-        />
-        <Route
-          path="/category/:id"
-          Component={(props) => (
-            <ItemsListContainer
-              instrumentos={instrumentos}
-              categorias={categorias}
-              {...props}
-            />
-          )}
-        />
-        <Route
-          path="/item/:id"
-          Component={(props) => (
-            <ItemDetailContainer
-              instrumentos={instrumentos}
-              categorias={categorias}
-              {...props}
-            />
-          )}
-        />
-        <Route
-          path="/checkout/"
-          Component={(props) => (
-            <Checkout
-              instrumentos={instrumentos}
-              categorias={categorias}
-              {...props}
-            />
-          )}
-        />
-      </Routes>
+      <Context.Provider
+        value={{ carrito, setCarrito, openModalWithId, setOpenModalWithId }}
+      >
+        <NavBar />
+        <ToastContainer />
+        {openModalWithId && <ModalCart />}
+        <Routes>
+          <Route
+            path="/"
+            Component={(props) => (
+              <ItemsListContainer
+                instrumentos={instrumentos}
+                categorias={categorias}
+                {...props}
+              />
+            )}
+          />
+          <Route
+            path="/category/:id"
+            Component={(props) => (
+              <ItemsListContainer
+                instrumentos={instrumentos}
+                categorias={categorias}
+                {...props}
+              />
+            )}
+          />
+          <Route
+            path="/item/:id"
+            Component={(props) => (
+              <ItemDetailContainer
+                instrumentos={instrumentos}
+                categorias={categorias}
+                {...props}
+              />
+            )}
+          />
+          <Route
+            path="/checkout/"
+            Component={(props) => (
+              <Checkout
+                instrumentos={instrumentos}
+                categorias={categorias}
+                {...props}
+              />
+            )}
+          />
+        </Routes>
+      </Context.Provider>
     </div>
   );
 }

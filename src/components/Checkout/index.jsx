@@ -1,70 +1,67 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import images from "../../helpers/images";
 import { toast } from "react-toastify";
+import { Context } from "../../Context";
+import { collection, addDoc } from "firebase/firestore";
+import db from "../../helpers/firebase";
 import "./style.css";
 
 export default function Checkout({ instrumentos, categorias }) {
+  let { carrito, setCarrito } = useContext(Context);
   let [instrumentosActuales, setInstrumentosActuales] = useState([]);
   let [cantidadInstrumentos, setCantidadInstrumentos] = useState(0);
   let [totalCompra, setTotalCompra] = useState(0);
+
   const numberWithCommas = (x) => {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   };
 
   const eliminarDelCarrito = (id) => {
-    const carrito = localStorage.getItem("carrito") ?? "";
-    let idsCarrito = carrito.split(",");
-    const arrayCarrito = idsCarrito.filter((itemId) => itemId !== id);
-    localStorage.setItem("carrito", arrayCarrito);
+    const arrayCarrito = carrito.filter((item) => item.id !== id);
+    setCarrito(arrayCarrito);
     parsearCarrito();
     toast("Producto eliminado del carrito exitosamente");
   };
 
-  const confirmarCompra = () => {
-    let carrito = localStorage.getItem("carrito") ?? "";
-    if (carrito) {
-      localStorage.removeItem("carrito");
+  const confirmarCompra = async () => {
+    if (carrito.length >0) {
+      const docRef = await addDoc(collection(db, "orders"), {
+        total: totalCompra,
+      });
+      setCarrito([]);
       setInstrumentosActuales([]);
       setCantidadInstrumentos(0);
       setTotalCompra(0);
-      toast("Felicidades, tu compra se ha realizado con exito");
+      toast(
+        `Felicidades, tu compra se ha realizado con exito! Nro. orden: ${docRef.id}`
+      );
+    } else {
+      toast(
+        `carrito vacio`
+      );
     }
   };
 
   const parsearCarrito = () => {
-    let carrito = localStorage.getItem("carrito") ?? "";
     let arrayCarrito = [];
     let total = 0;
-    let idsCarrito = carrito.split(",");
-    if (carrito !== "") {
-      setCantidadInstrumentos(idsCarrito.length);
-    } else {
-      setCantidadInstrumentos(0);
-    }
-    idsCarrito.forEach((id) => {
-      let exists = arrayCarrito.findIndex((item) => item.id === id.toString());
-      if (exists >= 0) {
-        console.log(exists);
-        arrayCarrito[exists] = {
-          ...arrayCarrito[exists],
-          cantidad: arrayCarrito[exists].cantidad + 1,
-        };
-        total += Number(arrayCarrito[exists].precio);
-      } else {
-        let instrumento = instrumentos.find(
-          (item) => item.id === id.toString()
-        );
-        if (instrumento) {
-          arrayCarrito.push({
-            ...instrumento,
-            cantidad: 1,
-          });
-          total += Number(instrumento.precio);
-        }
+    let cantidadInstrumentos = 0;
+    carrito.forEach((item) => {
+      let instrumento = instrumentos.find(
+        (instrumento) => instrumento.id === item.id
+      );
+      if (instrumento) {
+        arrayCarrito.push({
+          ...instrumento,
+          cantidad: item.cantidad,
+        });
+        total += Number(instrumento.precio * item.cantidad);
+        cantidadInstrumentos += item.cantidad;
       }
     });
     console.log(arrayCarrito);
     setInstrumentosActuales(arrayCarrito);
+    setCantidadInstrumentos(cantidadInstrumentos);
     setTotalCompra(total);
   };
 

@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import imagenes from "../../helpers/images";
 import { useParams } from "react-router-dom";
-import { agregarCarrito } from "../../helpers/carrito";
 import "./index.css";
+import { Context } from "../../Context";
 
 export default function ItemDetailContainer({ instrumentos, categorias }) {
   let { id } = useParams();
+  let { setOpenModalWithId } = useContext(Context);
   let [instrumentoActual, setInstrumentoActual] = useState();
   const numberWithCommas = (x) => {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
@@ -22,7 +23,10 @@ export default function ItemDetailContainer({ instrumentos, categorias }) {
     if (instrumentoActual) {
       return (
         <div className="itemCard">
-          <img src={imagenes[instrumentoActual.imagen]} className="singleItemImg" />
+          <img
+            src={imagenes[instrumentoActual.imagen]}
+            className="singleItemImg"
+          />
           <div className="itemDetails">
             <p>{instrumentoActual.nombre}</p>
             <p>{categorias[instrumentoActual.categoria]}</p>
@@ -30,7 +34,7 @@ export default function ItemDetailContainer({ instrumentos, categorias }) {
             <p>{numberWithCommas(instrumentoActual.precio)}</p>
             <div
               className="button"
-              onClick={() => agregarCarrito(instrumentoActual.id)}
+              onClick={() => setOpenModalWithId(instrumentoActual.id)}
             >
               <p>Agregar al carrito</p>
             </div>

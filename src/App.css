@@ -4,6 +4,7 @@ body {
   overflow-x: hidden;
 
   background-image: url("./img/fondo.png");
+  background-position: center;
+  background-attachment: fixed;  
   background-size: cover;
-  
 }
